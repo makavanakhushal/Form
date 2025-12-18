@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Admission Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .form-container {
+            width: 500px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .gender input {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4c87af;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a04574;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Admission Form</h2>
+
+    <form id="admissionForm">
+
+        <!-- Student Details -->
+        <label>Full Name:</label>
+        <input type="text" id="name">
+
+        <label>Date of Birth:</label>
+        <input type="date" id="dob">
+
+        <label>Age:</label>
+        <input type="number" id="age">
+
+        <label>Gender:</label>
+        <div class="gender">
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+        </div>
+
+        <!-- Study History -->
+        <label>10th Marks:</label>
+        <input type="text" id="marks10">
+
+        <label>10th School Name:</label>
+        <input type="text" id="school10">
+
+        <label>12th Marks:</label>
+        <input type="text" id="marks12">
+
+        <label>12th School Name:</label>
+        <input type="text" id="school12">
+
+        <!-- Contact Details -->
+        <label>Address:</label>
+        <textarea id="address"></textarea>
+
+        <label>Mobile Number:</label>
+        <input type="text" id="mobile">
+
+        <label>Email:</label>
+        <input type="email" id="email">
+
+        <!-- Stream Selection -->
+        <label>Choose Stream:</label>
+        <select id="stream">
+            <option value="">--Select Stream--</option>
+            <option>IMCA AI&ML</option>
+            <option>IMCA CEYBER</option>
+            <option>BA</option>
+            <option>IMBA    </option>
+        </select>
+
+        <h3>Created By Khushal</h3>
+
+        <button type="submit">Submit</button>
+
+        <div class="error" id="errorMsg"></div>
+    </form>
+</div>
+
+<script>
+    document.getElementById("admissionForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let dob = document.getElementById("dob").value;
+        let age = document.getElementById("age").value;
+        let marks10 = document.getElementById("marks10").value;
+        let school10 = document.getElementById("school10").value;
+        let marks12 = document.getElementById("marks12").value;
+        let school12 = document.getElementById("school12").value;
+        let address = document.getElementById("address").value;
+        let mobile = document.getElementById("mobile").value;
+        let email = document.getElementById("email").value;
+        let stream = document.getElementById("stream").value;
+
+        let genderSelected = document.querySelector('input[name="gender"]:checked');
+
+        if (
+            name === "" || dob === "" || age === "" ||
+            !genderSelected ||
+            marks10 === "" || school10 === "" ||
+            marks12 === "" || school12 === "" ||
+            address === "" || mobile === "" ||
+            email === "" || stream === ""
+        ) {
+            document.getElementById("errorMsg").innerHTML = "Please fill all fields.";
+        } else {
+            document.getElementById("errorMsg").innerHTML = "";
+            alert("Admission Form Submitted Successfully!");
+            document.getElementById("admissionForm").reset();
+        }
+    });
+</script>
+
+</body>
+</html>
